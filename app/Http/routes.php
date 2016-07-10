@@ -17,3 +17,11 @@ Route::get('/', function () {
 	$posts = Post::paginate(9);
     return view('blogs.index')->withPosts($posts);
 });
+
+Route::auth();
+
+Route::get('/admin', 'HomeController@index');
+
+Route::group(['middleware' => ['web']], function () {
+	Route::resource('/admin/post', 'AdminPostController'	);
+});
