@@ -19,7 +19,9 @@
 				@foreach ($posts as $post)
 		    		@include('blogs.post')
 			    @endforeach
+			    <div class="col-xs-12">
 			    {{ $posts->render() }}
+			    </div>
 		    @endif
           </div><!--/row-->
         </div><!--/.col-xs-12.col-sm-12-->
