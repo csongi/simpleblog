@@ -32,9 +32,16 @@
                                  </a>
                              </td>
                              <td>
-                                 <a href="" ng-click="delete(post.id)">
-                                     <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-                                 </a>
+                                <span ng-if="post.deleted_at === null">
+                                    <a href="" ng-click="delete(post.id)">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                    </a>
+                                </span>
+                                <span ng-if="post.deleted_at !== null">
+                                    <a href="" ng-click="restore(post.id)">
+                                        <i class="fa fa-repeat" aria-hidden="true"></i> Restore
+                                    </a> 
+                                </span>
                              </td>
                          </tr>
                      </tbody>

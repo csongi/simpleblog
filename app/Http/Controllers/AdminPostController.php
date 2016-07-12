@@ -18,7 +18,7 @@ class AdminPostController extends Controller
     public function index()
     {
         return response()
-            ->json(['posts' => Post::with('user')->get()]);
+            ->json(['posts' => Post::withTrashed()->with('user')->get()]);
     }
 
     /**
@@ -84,6 +84,21 @@ class AdminPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+         
+        $post->delete();
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+         
+        $post->restore();
     }
 }
