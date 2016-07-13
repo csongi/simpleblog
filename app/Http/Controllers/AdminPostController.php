@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
-use \App\Post;
-
+use App\Post;
 use Auth;
+
+use App\Exceptions\AccessDeniedException;
 
 class AdminPostController extends Controller
 {
@@ -41,6 +41,7 @@ class AdminPostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->checkPermission('create-post');
         $post = new Post;
         $post->fill($request->input());
         $post->user_id = Auth::user()->id;
@@ -57,6 +58,8 @@ class AdminPostController extends Controller
      */
     public function show($id)
     {
+        $this->checkPermission('view-post');
+
         $post = Post::findOrFail($id);
         return response()->json($post);
     }
@@ -69,6 +72,8 @@ class AdminPostController extends Controller
      */
     public function edit($id)
     {
+        $this->checkPermission('edit-post');
+
         $post = Post::findOrFail($id);
         return response()->json($post);
     }
@@ -82,6 +87,8 @@ class AdminPostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkPermission('edit-post');
+
         $post = Post::findOrFail($id);
         $post->fill($request->input());
         $post->user_id = Auth::user()->id;
@@ -98,9 +105,26 @@ class AdminPostController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkPermission('trash-post');
+
         $post = Post::findOrFail($id);
          
         $post->delete();
+    }
+
+    /**
+     * Delete the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $this->checkPermission('delete-post');
+
+        $post = Post::onlyTrashed()->findOrFail($id);
+         
+        $post->forceDelete();
     }
 
     /**
@@ -111,8 +135,16 @@ class AdminPostController extends Controller
      */
     public function restore($id)
     {
+        $this->checkPermission('restore-post');
+
         $post = Post::onlyTrashed()->findOrFail($id);
          
         $post->restore();
+    }
+
+    private function checkPermission($permissionName) {
+        if (!Auth::user()->can($permissionName)) {
+            throw new AccessDeniedException("Access denied!");  
+        }
     }
 }

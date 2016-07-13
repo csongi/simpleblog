@@ -9,11 +9,11 @@
               <form class="form" name="PostForm" ng-controller="PostFormCtrl" ng-submit="store()">
                   <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" ng-model="post.title" id="title" placeholder="Title">
+                    <input type="text" class="form-control" required ng-model="post.title" id="title" placeholder="Title">
                   </div>
                   <div class="form-group">
                     <label for="content">Content</label>
-                    <input type="text" class="form-control" ng-model="post.content" id="content" placeholder="Content">
+                    <textarea class="form-control" required ng-model="post.content" id="content" placeholder="Content" cols="30" rows="10"></textarea> 
                   </div>
                   <div class="row">
                       <div class="col-md-12">

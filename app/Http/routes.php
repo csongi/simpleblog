@@ -25,4 +25,5 @@ Route::get('/admin', 'HomeController@index');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/admin/post', 'AdminPostController');
 	Route::post('/admin/post/restore/{id}', 'AdminPostController@restore');
+	Route::delete('/admin/post/delete/{id}', 'AdminPostController@delete');
 });

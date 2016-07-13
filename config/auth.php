@@ -104,4 +104,7 @@ return [
         ],
     ],
 
+    'model' => App\User::class,
+    'table' => 'users',
+
 ];
