@@ -8,7 +8,11 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                @include('admin.posts._index')
+                    <div ng-app="Posts">
+                        @include('admin.posts._index')
+                        @include('admin.posts._edit_post')
+                        @include('admin.posts._new_post')
+                    </div>
                 </div>
             </div>
         </div>

@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use \App\Post;
 
+use Auth;
+
 class AdminPostController extends Controller
 {
     /**
@@ -39,7 +41,12 @@ class AdminPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->fill($request->input());
+        $post->user_id = Auth::user()->id;
+        $post->save();
+         
+        return response()->json($post);
     }
 
     /**
@@ -50,7 +57,8 @@ class AdminPostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return response()->json($post);
     }
 
     /**
@@ -61,7 +69,8 @@ class AdminPostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return response()->json($post);
     }
 
     /**
@@ -73,7 +82,12 @@ class AdminPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->fill($request->input());
+        $post->user_id = Auth::user()->id;
+        $post->save();
+        
+        return response()->json($post);
     }
 
     /**
