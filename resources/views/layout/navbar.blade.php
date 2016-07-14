@@ -9,8 +9,13 @@
         </button>
         <a class="navbar-brand" href="#">Simple blog</a>
       </div>
+      {{ Form::open(['url' => '/', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
+        <div class="form-group">
+          {{ Form::text('search', isset($search) ? $search : '', ['class' => 'form-control', 'placeholder' => 'Search']) }}
+        </div>
+      {{ Form::close() }}
       <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>

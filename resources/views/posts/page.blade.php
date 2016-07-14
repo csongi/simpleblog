@@ -9,20 +9,13 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+            <h1>{{ $post->title }}</h1>
+            <p>{{ date("F j. Y, H:i", strtotime($post->created_at)) }} by <strong>{{ $post->user->name }}</strong></p>
+            <p>{{ $post->content }}</p>
+            <p><a class="btn btn-default" href="{{ url('/') }}" role="button">« Back</a></p>
           </div>
           <div class="row">
-			@if ($posts->isEmpty())
-			<p>No Posts Yet, Sorry!</p>
-			@else
-				@foreach ($posts as $post)
-		    		@include('blogs.post')
-			    @endforeach
-			    <div class="col-xs-12">
-			    {{ $posts->render() }}
-			    </div>
-		    @endif
+      			
           </div><!--/row-->
         </div><!--/.col-xs-12.col-sm-12-->
 

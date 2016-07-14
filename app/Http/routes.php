@@ -14,8 +14,11 @@
 use \App\Post;
 
 Route::get('/', function () {
-	$posts = Post::paginate(9);
-    return view('blogs.index')->withPosts($posts);
+    return view('posts.index');
+});
+
+Route::get('/post/{id}', function ($id) {
+	return view('posts.page');
 });
 
 Route::auth();

@@ -157,6 +157,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Http\ViewComposers\ComposerServiceProvider::class,
 
     ],
 
