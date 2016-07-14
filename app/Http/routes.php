@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/post/{id}', function ($id) {
-	return view('posts.page');
+	return view('posts.page')->withId($id);
 });
 
 Route::auth();

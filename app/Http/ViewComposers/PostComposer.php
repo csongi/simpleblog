@@ -16,7 +16,8 @@ class PostComposer
      */
     public function compose(View $view)
     {
-        post = Post::findOrFail($id);
+        $viewData = $view->getData();
+        $post = Post::findOrFail($viewData['id']);
 
         $view->with(['post' => $post]);
     }

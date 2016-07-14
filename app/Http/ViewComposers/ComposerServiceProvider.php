@@ -15,7 +15,10 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         view()->composer(
-            'posts.index', 'App\Http\ViewComposers\PostsComposer',
+            'posts.index', 'App\Http\ViewComposers\PostsComposer'
+        );
+
+        view()->composer(
             'posts.page', 'App\Http\ViewComposers\PostComposer'
         );
     }
