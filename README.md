@@ -4,7 +4,7 @@ This is a simple blog web application builded with Laravel framework.
 
 Used laravel packages: "laravelcollective/html": "^5.2", "zizaco/entrust": "5.2.x-dev".
 
-## Instalation
+## Instalation and configuration
 
 git clone
 
@@ -17,6 +17,8 @@ php artisan migrate
 php artisan db:seed
 
 php artisan key:generate
+
+## Usage
 
 Backend url: /admin
 
