@@ -19,6 +19,9 @@ php artisan db:seed
 php artisan key:generate
 
 Backend url: /admin
+
 Login:
+
 csongor.mihaly@yahoo.com/jel520 (seeded admin user, rights: create, update, delete, trash, restore)
+
 or register as a blogger user (backend rights: view, trash, restore)
