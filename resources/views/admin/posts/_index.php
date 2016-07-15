@@ -10,6 +10,12 @@
     <hr/>
     <div class="row">
         <div class="col-md-12">
+            <input class="form-control" type="text" ng-model="searchText" placeholder="Search"/>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
             <table class="table">
                  <thead>
                      <tr>
@@ -22,7 +28,7 @@
                      </tr>
                  </thead>
                  <tbody>
-                     <tr ng-repeat="post in posts">
+                     <tr ng-repeat="post in posts | filter:searchText">
                         <td>{{ post.id}}</td>
                         <td>{{ post.title}}</td>
                         <td>{{ post.user.name}}</td>

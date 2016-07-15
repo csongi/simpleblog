@@ -20,7 +20,7 @@ class AdminPostController extends Controller
     public function index()
     {
         return response()
-            ->json(['posts' => Post::withTrashed()->with('user')->get()]);
+            ->json(['posts' => Post::withTrashed()->orderBy('created_at', 'desc')->with('user')->get()]);
     }
 
     /**

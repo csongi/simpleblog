@@ -17,12 +17,14 @@ class PostsComposer
      */
     public function compose(View $view)
     {
-        $posts = Post::paginate(9);
+        $posts = Post::orderBy('created_at', 'desc');
 
         if (Request::has('search')) {
-            $posts = Post::where('title', 'like', '%'. Request::input('search') .'%')
-                ->orWhere('content', 'like', '%'. Request::input('search') .'%')->paginate(9);
+            $posts->where('title', 'like', '%'. Request::input('search') .'%')
+                ->orWhere('content', 'like', '%'. Request::input('search') .'%');
         }
+
+        $posts = $posts->paginate(9);
 
         $view->with(['posts' => $posts, 'search' => Request::input('search')]);
     }
